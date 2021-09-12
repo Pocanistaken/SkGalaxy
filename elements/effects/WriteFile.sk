@@ -1,0 +1,8 @@
+import:
+	java.io.File
+	org.apache.commons.io.FileUtils 
+	java.io.IOException	
+	
+effect write %strings% to file %string%:
+    trigger:
+        FileUtils.writeStringToFile(new File(expression-2), join expressions-1 with nl, null and true)

@@ -1,0 +1,8 @@
+import:
+	java.io.File
+  
+effect create [new] file to %string%:
+	trigger:
+		set {_file} to new File(expression-1)
+		if {_file}.createNewFile() is true:
+			send "[SkGalaxy] New file created to %expression-1%" to console

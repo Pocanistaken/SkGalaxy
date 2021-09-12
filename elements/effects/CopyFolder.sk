@@ -1,0 +1,8 @@
+import:
+	java.io.File
+	org.apache.commons.io.FileUtils
+	java.io.IOException
+effect copy folder %string% to %string%:
+	trigger:
+		FileUtils.copyDirectory(new File(expression-1), new File(expression-2))
+

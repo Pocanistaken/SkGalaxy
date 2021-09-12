@@ -1,0 +1,11 @@
+
+import:
+	java.io.File
+
+expression [all] file names in [path] %string%:
+	return type: object
+	get:
+		set {_file} to new File(expression-1)
+		loop ...{_file}.listFiles():
+			add loop-value.getName() to {_return::*}
+		return {_return::*}

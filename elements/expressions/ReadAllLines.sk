@@ -1,0 +1,15 @@
+import:
+	java.io.File
+	java.nio.file.Files
+	java.lang.System	
+
+expression (nl|new line|newline):
+	return type: text
+	get:
+		return last character of System.lineSeparator()
+	
+expression [all] text[s] in [path] %string%:
+	return type: object
+	get:
+		set {_text} to join ...Files.readAllLines(new File(expression-1).toPath()) by new line
+		return {_text}

@@ -1,0 +1,8 @@
+import:
+	java.io.File
+	java.nio.file.Files
+	java.io.IOException	
+	
+effect create (directory[s]|folder[s]) %string%:
+    trigger:
+        Files.createDirectory(Paths.get(expression-1))
