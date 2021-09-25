@@ -1,0 +1,15 @@
+import:
+	java.net.URL
+	java.util.Scanner
+	
+expression htpp request from %string%:
+	return type: strings
+	get:
+		set {_url} to new URL(expr-1)
+		set {_connect} to {_url}.openConnection()
+		{_connect}.setRequestMethod("GET")
+		{_connect}.setConnectTimeout(5000)
+		{_connect}.setReadTimeout(5000)
+		set {_scanner} to new Scanner({_connect}.getInputStream())
+		{_scanner}.useDelimiter("\A")
+		return {_scanner}.next() if {_scanner}.hasNext() is true, else null

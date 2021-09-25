@@ -10,3 +10,5 @@ expression time %string%:
 	get:
 		set {_date} to new SimpleDateFormat(expression-1)
 		return {_date}.format(new Date())
+
+

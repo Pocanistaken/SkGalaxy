@@ -1,0 +1,13 @@
+import:
+	org.bukkit.WorldCreator
+	
+effect create world (named|name|with name) %string% [with seed %-string%]: 
+	trigger:
+		if expression-2 is set:
+			set {_integer} to expression-2 parsed as integer
+			set {_world} to new WorldCreator(expression-1).seed({_integer})
+			{_world}.createWorld()
+			broadcast "seed %expression-2% ve integerimiz %{_integer}% created"
+		else:
+			set {_world} to new WorldCreator(expression-1)
+			{_world}.createWorld()

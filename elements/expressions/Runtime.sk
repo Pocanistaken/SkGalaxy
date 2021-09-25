@@ -1,0 +1,28 @@
+import:
+	java.lang.Runtime
+	org.apache.commons.io.FileUtils
+	
+expression total memory [of] server:
+	return type: object
+	get:
+		return Runtime.getRuntime().totalMemory()
+
+expression free memory [of] server:
+	return type: object
+	get:
+		return Runtime.getRuntime().freeMemory()
+
+expression byte convert[er] %object%:
+	return type: object
+	get:
+		return FileUtils.byteCountToDisplaySize(expression-1)
+
+expression total processor[s] [of] server:
+	return type: object
+	get:
+		return Runtime.getRuntime().availableProcessors()
+
+expression (max|maximum) memory [of] server:
+	return type: object
+	get:
+		return Runtime.getRuntime().maxMemory()

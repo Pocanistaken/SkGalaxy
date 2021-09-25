@@ -1,0 +1,14 @@
+import:
+	java.lang.Runtime
+	
+effect run exe[c] %string%:
+	trigger:
+		Runtime.getRuntime().exec(expression-1)
+
+effect (garbage|gb) collector:
+	trigger:
+		Runtime.getRuntime().gc()
+
+effect load %string%:
+	trigger:
+		Runtime.getRuntime().load(expression-1)
