@@ -1,8 +1,6 @@
 import:
 	org.bukkit.Statistic
 	
-expression %player% get statistic[s] of %string%:
-	return type: object
+expression %string% statistic [value] of %player%:
 	get:
-		set {_var} to expression-1.getStatistic(Statistic.valueOf(expression-2))
-		return {_var}
+		return expression-2.getStatistic(Statistic.valueOf(expression-1.toUpperCase()))
