@@ -1,0 +1,20 @@
+#
+# https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor
+#
+import:
+	org.apache.commons.mail.Email
+	org.apache.commons.mail.DefaultAuthenticator
+	
+effect email send %string% [with] topic %string% to receiver email %string% with transmitter email %string% [with] port %integer% [with] (password|pass|passwd) %string%:
+	trigger:
+		set {_email} to new SimpleEmail()
+		{_email}.setHostName("smtp.gmail.com")
+		{_email}.setSmtpPort(587)
+		{_email}.setSSLOnConnect(true)
+		{_email}.setAuthenticator(new DefaultAuthenticator(expression-4, expression-6))
+		{_email}.setFrom(expression-4)
+		{_email}.addTo(expression-3)
+		{_email}.setSubject(expression-2)
+		{_email}.setMsg(expression-1)
+		{_email}.send()
+		

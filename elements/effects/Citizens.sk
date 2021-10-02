@@ -1,0 +1,81 @@
+import:
+	net.citizensnpcs.api.CitizensAPI
+	net.citizensnpcs.util.PlayerAnimation
+	net.citizensnpcs.trait.LookClose
+	org.bukkit.entity.EntityType
+	net.citizensnpcs.api.event.NPCSpawnEvent	
+	net.citizensnpcs.api.npc.NPC
+	
+effect make (npc|citizen) %offlineplayer% (animation|animate) %string%:
+	trigger:
+		PlayerAnimation.valueOf(expr-2).play(expr-1)
+
+effect set fly mode [of] (npc|citizen) (with id|id) %integer% to %boolean%:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1) 
+		{_npc}.setFlyable(expression-2)
+
+effect (npc|citizen) look others [to] %boolean% (with id|id) %integer%:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-2) 
+		{_npc}.lookClose(expr-1)
+
+effect (0¦pause|1¦continue) navigation of citizen (with id|id) %integer%:
+	trigger:
+		if expression-1 is set:
+			set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1) 
+			parser mark is 0:
+				{_npc}.getNavigator().setPaused(true)
+		else:
+			{_npc}.getNavigator().setPaused(true)
+
+effect make (npc|citizen)(with id|id) %integer% (go|move|travel) to [the] %location% [with speed %number%]:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1) 
+		{_npc}.getNavigator().cancelNavigation()
+		{_npc}.getNavigator().getDefaultParameters().baseSpeed(expr-3 ? 1)
+		{_npc}.getNavigator().setTarget(expr-2)
+
+effect make (npc|citizen)(with id|id) %integer% follow to [the] %entity% [with speed %number%] [and] [make aggressive level] [to] [%boolean%]:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1) 
+		{_npc}.getNavigator().cancelNavigation()
+		{_npc}.getNavigator().getDefaultParameters().baseSpeed(expr-3 ? 1)
+		{_npc}.getNavigator().setTarget(expr-2, expr-4 ? false)   
+		
+effect (npc|citizen)(create|register)(with name|named) %text%:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, expression-1)    		
+		
+effect (npc|citizen)(remove|destroy)(with id|id) %integer%:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1) 
+		{_npc}.destroy()		
+
+effect set skin of (npc|citizen)[with id] %integer% to %string%:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1)
+		{_npc}.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA and expr-2)
+		{_npc}.data().setPersistent(NPC.PLAYER_SKIN_USE_LATEST and false)
+		{_npc}.despawn()
+		{_npc}.spawn({_npc}.getStoredLocation())
+
+effect spawn (npc|citizen)(with id|id) %integer% at %location%:
+	trigger:
+		set {_npc} to CitizensAPI.getNPCRegistry().getById(expr-1) 
+		{_npc}.despawn()
+		{_npc}.spawn(expression-2)
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
