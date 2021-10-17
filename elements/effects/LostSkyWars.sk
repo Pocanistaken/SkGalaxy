@@ -1,0 +1,65 @@
+import:
+	io.github.losteddev.skywars.api.LostSkyWarsAPI
+	
+effect lostskywars add %integer% exp to %player%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-2).addExp(expression-1)
+
+effect lostskywars set %player% exp to %integer%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-1).setCoins(expression-2)
+
+effect lostskywars add %integer% coins to %player%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-2).addCoins(expression-1)
+
+effect lostskywars remove %integer% coins from %player%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-2).removeCoins(expression-1)
+
+effect lostskywars set %player% soul to %integer%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-1).setSouls(expression-2)
+
+effect lostskywars add %integer% souls to %player%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-2).addSouls(expression-1)
+
+effect lostskywars remove %integer% coins from %player%:
+    trigger:
+        LostSkyWarsAPI.getLostPlayer(expression-2).removeSouls(expression-1)
+		
+expression lostskywars %player%['s} [all] coin[s]:
+	return type: integer
+	get:		
+        return LostSkyWarsAPI.getLostPlayer(expression-1).getCoins()
+
+expression lostskywars %player%['s} [all] soul[s]:
+	return type: integer
+	get:		
+        return LostSkyWarsAPI.getLostPlayer(expression-1).getSouls()		
+		
+expression lostskywars %player%['s} [all] exp[s]:
+	return type: object
+	get:		
+        return LostSkyWarsAPI.getLostPlayer(expression-1).getCurrentExp()			
+		
+expression lostskywars %player%['s} level:
+	return type: integer
+	get:		
+        return LostSkyWarsAPI.getLostPlayer(expression-1).getLevel()			
+		
+expression lostskywars %player%['s} [all] mystery[s] dust:
+	return type: integer
+	get:		
+        return LostSkyWarsAPI.getLostPlayer(expression-1).getMysteryDusts()					
+		
+expression lostskywars %player%['s} server:
+	return type: object
+	get:		
+        return LostSkyWarsAPI.getLostPlayer(expression-1).getServer()			
+		
+
+		
+		
+		
